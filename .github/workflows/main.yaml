@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-go@v4
     - run: |
-        cat ~/.netrc
-        
+        git config --global http.https://github.com/gramLabs/.extraheader \
+            "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.PAT }}}" | base64 -w 0)"
         go env -w "GOPRIVATE=github.com/gramLabs/*"
         go mod tidy
         go run .
