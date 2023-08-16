@@ -11,7 +11,8 @@ jobs:
     - uses: actions/setup-go@v4
     - run: |
         git config --global http.https://github.com/gramLabs/.extraheader \
-            "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.PAT }}}" | base64 -w 0)"
+            "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.PAT }}" | base64 -w 0)"
+        
         go env -w "GOPRIVATE=github.com/gramLabs/*"
         go mod tidy
         go run .
